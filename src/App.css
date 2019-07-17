@@ -1,0 +1,25 @@
+.app {
+  height: 100vh;
+}
+.header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  height: 64px;
+}
+.dashboard {
+  height: 100%;
+  padding: 0 !important;
+}
+.sidebar {
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  height: 100%;
+  padding: 0 !important;
+}
+.wrapper {
+  height: calc(100% - 64px);
+}
+.content {
+  height: 100%;
+}
+.list-group-item {
+  border: none !important;
+}
