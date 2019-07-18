@@ -4,7 +4,7 @@ export default class Header extends Component {
     render() {
         return (
             <nav className="navbar navbarDefault header">
-                Header
+                <span>Expenseeve</span>
             </nav>
         )
     }

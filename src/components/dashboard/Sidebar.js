@@ -7,13 +7,13 @@ export default class Sidebar extends Component {
             <div className="list-group">
                 <Link to="/home" className="list-group-item">
                     Home
-                        </Link>
+                </Link>
                 <Link to="/setting" className="list-group-item">
                     Setting
-                        </Link>
+                </Link>
                 <Link to="/profile" className="list-group-item">
                     Profile
-                        </Link>
+                </Link>
             </div>
         )
     }

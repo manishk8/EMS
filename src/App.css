@@ -4,6 +4,10 @@
 .header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   height: 64px;
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .dashboard {
   height: 100%;
@@ -21,5 +25,18 @@
   height: 100%;
 }
 .list-group-item {
-  border: none !important;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  margin-top: 1px;
+  padding-left: 40px;
+  height: 48px;
+}
+.editIcon {
+  width: 20px; height: 20px;
+}
+.row {
+  margin: 0 !important;
+}
+.addBtn {
+  margin: 24px 0;
 }
