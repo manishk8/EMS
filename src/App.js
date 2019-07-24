@@ -17,6 +17,7 @@ function App() {
           <Dashboard exact path="/profile" component={Profile} />
         </Switch>
       </BrowserRouter>
+      <Home />
     </div>
   );
 }
