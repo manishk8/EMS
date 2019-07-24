@@ -3,6 +3,8 @@ let initialState = {
     nameStore: '',
     priceStore: '',
     dateStore: '',
+    addCategoryStore: '',
+    addBudget: ''
 }
 
 export const reducerName = (state = initialState, action) => {
@@ -13,7 +15,15 @@ export const reducerName = (state = initialState, action) => {
                 categoryStore: action.data.categoryStore,
                 nameStore: action.data.nameStore,
                 priceStore: action.data.priceStore,
-                dateStore: action.data.dateStore,
+                dateStore: action.data.dateStore
+            }
+        case "ADD_CATEGORY":
+            return {
+                addCategoryStore: action.data.addCategoryStore
+            }
+        case "ADD_BUDGET":
+            return {
+                addBudget: action.data.addBudget
             }
         default: return state
     }
