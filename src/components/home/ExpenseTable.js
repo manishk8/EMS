@@ -1,16 +1,7 @@
 import React, { Component } from 'react'
 
 export default class ExpenseTable extends Component {
-    constructor() {
-        super();
-        this.sum = 0;
-    }
     render() {
-        let { myArray } = this.props;
-        for (var i = 0; i < myArray.length; i++) {
-            this.sum += Number(myArray[i].priceStore);
-        }
-        console.log("sum", this.sum)
         return (
             <table className="table table-bordered">
                 <thead>

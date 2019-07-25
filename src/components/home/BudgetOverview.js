@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 
 export default class BudgetOverview extends Component {
+    constructor() {
+        super();
+        this.spent = 0
+    }
     render() {
+        this.spent = Number((this.props.totalExpense * 100) / this.props.budgetStore);
         return (
             <div className="row" style={{ border: "1px solid rgba(0,0,0,0.12)" }}>
                 <div className="col-md12">
@@ -13,7 +18,7 @@ export default class BudgetOverview extends Component {
                     <div className="row" style={{ padding: "16px 24px" }}>
                         <div className="col-md-6">
                             <div className="circle">
-                                <span>80% spent</span>
+                                <span>{this.spent}% Spent</span>
                             </div>
                         </div>
                         <div className="col-md-6">
@@ -23,7 +28,7 @@ export default class BudgetOverview extends Component {
                             </div>
                             <div>
                                 <p>Total Expenses:</p>
-                                <p>Rs. {this.props.myprice}</p>
+                                <p>Rs. {this.props.totalExpense}</p>
                             </div>
                         </div>
                     </div>

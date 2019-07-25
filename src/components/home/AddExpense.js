@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class AddExpense extends Component {
     render() {
-        // console.log("this.props.addCategoryStore", this.props.addCategoryStore)
+        // console.log("this.props.addCategoryStore", this.props.categoryStore)
         return (
             <div id="myModal" className="modal fade" role="dialog">
                 <div className="modal-dialog">
@@ -16,8 +16,8 @@ export default class AddExpense extends Component {
                                 <div className="form-group">
                                     <label htmlFor="categoryStore">Category:</label>
                                     {/* <input type="text" className="form-control" id="categoryStore" value={this.props.categoryStore} onChange={this.props.stateUpdate} /> */}
-                                    <select class="form-control" id="categoryStore">
-                                        <option >{this.props.addCategoryStore}</option>
+                                    <select className="form-control" id="categoryStore">
+                                        <option >{this.props.categoryStore}</option>
                                         {/* {
                                             this.myArray.map((name, id) =>
                                                 // console.log("name.addCategoryStore", name.addCategoryStore)

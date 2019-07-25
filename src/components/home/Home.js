@@ -11,6 +11,7 @@ class Home extends Component {
         super();
         this.state = {
         }
+        this.totalExpense = 0;
         this.myArray = []
     }
 
@@ -35,13 +36,16 @@ class Home extends Component {
     }
 
     render() {
-        console.log("this.props.addCategoryStore", this.props.addCategoryValue)
+        let newArr = this.myArray;
+        for (var i = 0; i < newArr.length; i++) {
+            this.totalExpense += Number(newArr[i].priceStore);
+        }
         return (
             <div className="row">
                 <div className="col-md-12">
                     <div className="row" style={{ paddingTop: "40px" }}>
                         <div className="col-md-6">
-                            <BudgetOverview budgetStore={this.props.budgetStore} myprice={this.myprice} />
+                            <BudgetOverview budgetStore={this.props.budgetStore} myprice={this.myprice} totalExpense={this.totalExpense} />
                         </div>
                         <div className="col-md-6">
                             <CategoryChart />
@@ -51,7 +55,7 @@ class Home extends Component {
                     <button type="button" className="btn btn-default addBtn" data-toggle="modal" data-target="#myModal">Add Expense</button>
 
                     <AddExpense
-                        categoryStore={this.props.categoryStore}
+                        categoryStore={this.props.addCategoryStore}
                         nameStore={this.props.nameStore}
                         priceStore={this.props.priceStore}
                         dateStore={this.props.dateStore}
