@@ -12,18 +12,20 @@ export const reducerName = (state = initialState, action) => {
         case "ADD_EXPENSE":
             return {
                 ...state,
-                categoryStore: action.data.categoryStore,
-                nameStore: action.data.nameStore,
-                priceStore: action.data.priceStore,
-                dateStore: action.data.dateStore
+                categoryStore: action.data,
+                nameStore: action.data,
+                priceStore: action.data,
+                dateStore: action.data
             }
         case "ADD_CATEGORY":
             return {
-                addCategoryStore: action.data.addCategoryStore
+                ...state,
+                addCategoryStore: action.data
             }
         case "ADD_BUDGET":
             return {
-                addBudget: action.data.addBudget
+                ...state,
+                addBudget: action.data
             }
         default: return state
     }

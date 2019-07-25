@@ -5,18 +5,21 @@ import { connect } from 'react-redux';
 class Setting extends Component {
     constructor() {
         super();
+        this.state = {
+        }
         this.myArray = [];
         this.budgetValue = ""
     }
 
     updateBudget = () => {
         this.props.dispatch(addBudgetName(
-            this.budgetValue = this.state.budgetStore
+            this.state.addBudget
         )
         )
     }
 
     stateUpdateBudget = (e) => {
+        console.log("e.target.id", e.target.id, "e.target.value", e.target.value)
         this.setState({
             [e.target.id]: e.target.value
         })
@@ -35,6 +38,10 @@ class Setting extends Component {
         )
     }
 
+    deleteCategory = () => {
+
+    }
+
     render() {
         return (
             <div className="row">
@@ -46,9 +53,8 @@ class Setting extends Component {
                         <div className="col-md-4">
                             <form>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" id="budgetStore" value={this.props.budgetStore} onChange={this.stateUpdateBudget} />
+                                    <input type="text" className="form-control" id="addBudget" value={this.state.addBudget} onChange={this.stateUpdateBudget} />
                                 </div>
-                                <p>{this.budgetValue}</p>
                             </form>
                         </div>
                         <div className="col-md-4">
@@ -62,7 +68,7 @@ class Setting extends Component {
                         <div className="col-md-4">
                             <form>
                                 <div className="form-group">
-                                    <input type="text" placeholder="Category Name" className="form-control" id="addCategoryStore" value={this.props.addCategoryStore} onChange={this.stateUpdateCategory} />
+                                    <input type="text" placeholder="Category Name" className="form-control" id="addCategoryStore" value={this.state.addCategoryStore} onChange={this.stateUpdateCategory} />
                                 </div>
                             </form>
                         </div>
@@ -73,7 +79,7 @@ class Setting extends Component {
                     <div className="row" style={{ paddingTop: "24px" }}>
                         <div className="col-md-4"></div>
                         <div className="col-md-4">
-                            <table className="table table-hover table-bordered">
+                            <table className="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Category</th>
@@ -86,7 +92,7 @@ class Setting extends Component {
                                             // console.log("name.addCategoryStore", name.addCategoryStore)
                                             < tr key={id} >
                                                 <td>{name.addCategoryStore}</td>
-                                                <td><img src="/images/baseline_delete_outline_black_24dp.png" alt="logo" className="editIcon" data-toggle="modal" data-target="#myModal" /></td>
+                                                <td><img src="/images/baseline_delete_outline_black_24dp.png" alt="icon" className="editIcon" onClick={this.deleteCategory} /></td>
                                             </tr>
                                         )
                                     }
@@ -103,8 +109,8 @@ class Setting extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        addCategoryStore: state.addCategoryStore,
-        budgetStore: state.budgetStore
+        addCategoryValue: state.addCategoryStore,
+        budgetStore: state.addBudget
     }
 }
 

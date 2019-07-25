@@ -3,6 +3,8 @@ import AddExpense from './AddExpense';
 import ExpenseTable from './ExpenseTable';
 import { addExpense } from '../../action';
 import { connect } from 'react-redux';
+import BudgetOverview from './BudgetOverview';
+import CategoryChart from './CategoryChart';
 
 class Home extends Component {
     constructor() {
@@ -22,24 +24,29 @@ class Home extends Component {
     formSave = () => {
         // localStorage.setItem("name", "manish")
         // this.myArray.push(this.state)
-        // this.setState({ categoryStore: '', nameStore: '', priceStore: '', dateStore: '' })
 
         this.props.dispatch(addExpense(
             this.myArray.push(this.state)
 
-            // categoryStore: this.state.categoryStore,
-            // nameStore: this.state.nameStore,
-            // priceStore: this.state.priceStore,
-            // dateStore: this.state.dateStore,
-            // editRow: 0
         )
         )
+        this.setState({ categoryStore: '', nameStore: '', priceStore: '', dateStore: '' })
+
     }
 
     render() {
+        console.log("this.props.addCategoryStore", this.props.addCategoryValue)
         return (
             <div className="row">
                 <div className="col-md-12">
+                    <div className="row" style={{ paddingTop: "40px" }}>
+                        <div className="col-md-6">
+                            <BudgetOverview budgetStore={this.props.budgetStore} myprice={this.myprice} />
+                        </div>
+                        <div className="col-md-6">
+                            <CategoryChart />
+                        </div>
+                    </div>
 
                     <button type="button" className="btn btn-default addBtn" data-toggle="modal" data-target="#myModal">Add Expense</button>
 
@@ -50,6 +57,7 @@ class Home extends Component {
                         dateStore={this.props.dateStore}
                         formSave={this.formSave}
                         stateUpdate={this.stateUpdate}
+                        addCategoryStore={this.props.addCategoryStore}
                     />
 
                     <ExpenseTable
@@ -72,7 +80,9 @@ const mapStateToProps = (state) => {
         mycategory: state.categoryStore,
         myname: state.nameStore,
         myprice: state.priceStore,
-        mydate: state.dateStore
+        mydate: state.dateStore,
+        budgetStore: state.addBudget,
+        addCategoryValue: state.addCategoryStore,
     }
 }
 

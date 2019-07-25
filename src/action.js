@@ -13,6 +13,7 @@ export function addCategoryName(data) {
 }
 
 export function addBudgetName(data) {
+    console.log("==>", data)
     return {
         type: "ADD_BUDGET",
         data

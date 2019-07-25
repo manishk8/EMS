@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export default class AddExpense extends Component {
     render() {
+        // console.log("this.props.addCategoryStore", this.props.addCategoryStore)
         return (
             <div id="myModal" className="modal fade" role="dialog">
                 <div className="modal-dialog">
@@ -13,8 +14,22 @@ export default class AddExpense extends Component {
                         <div className="modal-body">
                             <form>
                                 <div className="form-group">
-                                    <label >Category:</label>
-                                    <input type="text" className="form-control" id="categoryStore" value={this.props.categoryStore} onChange={this.props.stateUpdate} />
+                                    <label htmlFor="categoryStore">Category:</label>
+                                    {/* <input type="text" className="form-control" id="categoryStore" value={this.props.categoryStore} onChange={this.props.stateUpdate} /> */}
+                                    <select class="form-control" id="categoryStore">
+                                        <option >{this.props.addCategoryStore}</option>
+                                        {/* {
+                                            this.myArray.map((name, id) =>
+                                                // console.log("name.addCategoryStore", name.addCategoryStore)
+                                                // < tr key={id} >
+                                                //     <td>{name.addCategoryStore}</td>
+                                                //     <td><img src="/images/baseline_delete_outline_black_24dp.png" alt="icon" className="editIcon" onClick={this.deleteCategory} /></td>
+                                                // </tr>
+                                                <option key={id} >{name.addCategoryStore}</option>
+                                            )
+                                        } */}
+
+                                    </select>
                                 </div>
                                 <div className="form-group">
                                     <label >Name:</label>
