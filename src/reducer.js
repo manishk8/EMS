@@ -1,31 +1,30 @@
 let initialState = {
-    categoryStore: '',
-    nameStore: '',
-    priceStore: '',
-    dateStore: '',
-    addCategoryStore: '',
-    addBudget: ''
+    category: [],
+    name: '',
+    price: '',
+    date: '',
+    budget: ''
 }
 
-export const reducerName = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case "ADD_EXPENSE":
             return {
                 ...state,
-                categoryStore: action.data,
-                nameStore: action.data,
-                priceStore: action.data,
-                dateStore: action.data
+                category: action.data,
+                name: action.data,
+                price: action.data,
+                date: action.data
             }
         case "ADD_CATEGORY":
             return {
                 ...state,
-                addCategoryStore: action.data
+                category: action.data
             }
         case "ADD_BUDGET":
             return {
                 ...state,
-                addBudget: action.data
+                budget: action.data
             }
         default: return state
     }

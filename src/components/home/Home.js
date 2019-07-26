@@ -12,40 +12,35 @@ class Home extends Component {
         this.state = {
         }
         this.totalExpense = 0;
-        this.myArray = []
+        this.expenses = []
     }
 
-    stateUpdate = (e) => {
-        console.log(e.target.id, e.target.value)
+    onChange = (e) => {
+        console.log("e.target.id", e.target.id, "e.target.value", e.target.value)
         this.setState({
             [e.target.id]: e.target.value
         })
     }
 
-    formSave = () => {
-        // localStorage.setItem("name", "manish")
-        // this.myArray.push(this.state)
-
+    expenseSave = () => {
         this.props.dispatch(addExpense(
-            this.myArray.push(this.state)
-
+            this.expenses.push(this.state)
         )
         )
-        this.setState({ categoryStore: '', nameStore: '', priceStore: '', dateStore: '' })
-
+        this.setState({ category: [], name: '', price: '', date: '' })
     }
 
     render() {
-        let newArr = this.myArray;
-        for (var i = 0; i < newArr.length; i++) {
-            this.totalExpense += Number(newArr[i].priceStore);
+        let newExpenses = this.expenses;
+        for (var i = 0; i < newExpenses.length; i++) {
+            this.totalExpense += Number(newExpenses[i].price);
         }
         return (
             <div className="row">
                 <div className="col-md-12">
                     <div className="row" style={{ paddingTop: "40px" }}>
                         <div className="col-md-6">
-                            <BudgetOverview budgetStore={this.props.budgetStore} myprice={this.myprice} totalExpense={this.totalExpense} />
+                            <BudgetOverview budget={this.props.budget} myprice={this.myprice} totalExpense={this.totalExpense} />
                         </div>
                         <div className="col-md-6">
                             <CategoryChart />
@@ -55,21 +50,20 @@ class Home extends Component {
                     <button type="button" className="btn btn-default addBtn" data-toggle="modal" data-target="#myModal">Add Expense</button>
 
                     <AddExpense
-                        categoryStore={this.props.addCategoryStore}
-                        nameStore={this.props.nameStore}
-                        priceStore={this.props.priceStore}
-                        dateStore={this.props.dateStore}
-                        formSave={this.formSave}
-                        stateUpdate={this.stateUpdate}
-                        addCategoryStore={this.props.addCategoryStore}
+                        category={this.props.category}
+                        name={this.props.name}
+                        price={this.props.price}
+                        date={this.props.date}
+                        expenseSave={this.expenseSave}
+                        onChange={this.onChange}
                     />
 
                     <ExpenseTable
-                        myArray={this.myArray}
-                        categoryStore={this.props.categoryStore}
-                        nameStore={this.props.nameStore}
-                        priceStore={this.props.priceStore}
-                        dateStore={this.props.dateStore}
+                        expenses={this.expenses}
+                        category={this.props.category}
+                        name={this.props.name}
+                        price={this.props.price}
+                        date={this.props.date}
                     />
 
                 </div>
@@ -79,14 +73,12 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state, "state")
     return {
-        mycategory: state.categoryStore,
-        myname: state.nameStore,
-        myprice: state.priceStore,
-        mydate: state.dateStore,
-        budgetStore: state.addBudget,
-        addCategoryValue: state.addCategoryStore,
+        category: state.category,
+        name: state.name,
+        price: state.price,
+        date: state.date,
+        budget: state.budget,
     }
 }
 

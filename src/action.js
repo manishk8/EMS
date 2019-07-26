@@ -5,15 +5,14 @@ export function addExpense(data) {
     }
 }
 
-export function addCategoryName(data) {
+export function addCategory(data) {
     return {
         type: "ADD_CATEGORY",
         data
     }
 }
 
-export function addBudgetName(data) {
-    console.log("==>", data)
+export function addBudget(data) {
     return {
         type: "ADD_BUDGET",
         data

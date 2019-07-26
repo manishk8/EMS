@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addCategoryName, addBudgetName } from '../../action';
+import { addCategory, addBudget } from '../../action';
 import { connect } from 'react-redux';
 
 class Setting extends Component {
@@ -7,35 +7,38 @@ class Setting extends Component {
         super();
         this.state = {
         }
-        this.myArray = [];
-        this.budgetValue = ""
+        this.categories = [];
     }
 
-    updateBudget = () => {
-        this.props.dispatch(addBudgetName(
-            this.state.addBudget
-        )
-        )
-    }
-
-    stateUpdateBudget = (e) => {
-        console.log("e.target.id", e.target.id, "e.target.value", e.target.value)
+    onChangeBudget = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
     }
 
-    stateUpdateCategory = (e) => {
+    updateBudget = () => {
+        this.props.dispatch(addBudget(
+            this.state.budget
+        )
+        )
+        this.setState({ budget: "" })
+    }
+
+    onChangeCategory = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
     }
 
     updateCategory = () => {
-        this.props.dispatch(addCategoryName(
-            this.myArray.push(this.state)
+        console.log("this.state", this.state)
+        this.categories.push(this.state.category)
+        this.props.dispatch(addCategory(
+            this.categories
         )
         )
+        console.log("this.categories", this.categories)
+        this.setState({ category: "" })
     }
 
     deleteCategory = () => {
@@ -53,7 +56,7 @@ class Setting extends Component {
                         <div className="col-md-4">
                             <form>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" id="addBudget" value={this.state.addBudget} onChange={this.stateUpdateBudget} />
+                                    <input type="text" className="form-control" id="budget" value={this.state.budget} onChange={this.onChangeBudget} />
                                 </div>
                             </form>
                         </div>
@@ -68,7 +71,7 @@ class Setting extends Component {
                         <div className="col-md-4">
                             <form>
                                 <div className="form-group">
-                                    <input type="text" placeholder="Category Name" className="form-control" id="addCategoryStore" value={this.state.addCategoryStore} onChange={this.stateUpdateCategory} />
+                                    <input type="text" placeholder="Category Name" className="form-control" id="category" value={this.state.category} onChange={this.onChangeCategory} />
                                 </div>
                             </form>
                         </div>
@@ -88,10 +91,9 @@ class Setting extends Component {
                                 </thead>
                                 <tbody>
                                     {
-                                        this.myArray.map((name, id) =>
-                                            // console.log("name.addCategoryStore", name.addCategoryStore)
+                                        this.categories.map((data, id) =>
                                             < tr key={id} >
-                                                <td>{name.addCategoryStore}</td>
+                                                <td>{data}</td>
                                                 <td><img src="/images/baseline_delete_outline_black_24dp.png" alt="icon" className="editIcon" onClick={this.deleteCategory} /></td>
                                             </tr>
                                         )
@@ -109,8 +111,8 @@ class Setting extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        addCategoryValue: state.addCategoryStore,
-        budgetStore: state.addBudget
+        category: state.category,
+        budget: state.budget
     }
 }
 

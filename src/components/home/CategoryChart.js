@@ -12,7 +12,7 @@ export default function CategoryChart() {
                 </div>
                 <div className="row" style={{ padding: "16px 24px" }}>
                     <div className="col-md-12" >
-                        <Chart
+                        {/* <Chart
                             // width={'420px'}
                             // height={'280px'}
                             chartType="PieChart"
@@ -29,7 +29,7 @@ export default function CategoryChart() {
                                 title: 'My Daily Activities',
                             }}
                             rootProps={{ 'data-testid': '1' }}
-                        />
+                        /> */}
                     </div>
                 </div>
             </div>

@@ -15,12 +15,12 @@ export default class ExpenseTable extends Component {
                 </thead>
                 <tbody>
                     {
-                        this.props.myArray.map((list, id) =>
+                        this.props.expenses.map((data, id) =>
                             <tr key={id}>
-                                <td>{list.categoryStore}</td>
-                                <td>{list.nameStore}</td>
-                                <td>{list.priceStore}</td>
-                                <td>{list.dateStore}</td>
+                                <td>{data.category}</td>
+                                <td>{data.name}</td>
+                                <td>{data.price}</td>
+                                <td>{data.date}</td>
                                 <td><img src="/images/baseline_edit_black_24dp.png" alt="logo" className="editIcon" data-toggle="modal" data-target="#myModal" /></td>
                             </tr>
                         )

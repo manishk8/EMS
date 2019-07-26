@@ -6,7 +6,7 @@ export default class BudgetOverview extends Component {
         this.spent = 0
     }
     render() {
-        this.spent = Number((this.props.totalExpense * 100) / this.props.budgetStore);
+        this.spent = Number((this.props.totalExpense * 100) / this.props.budget);
         return (
             <div className="row" style={{ border: "1px solid rgba(0,0,0,0.12)" }}>
                 <div className="col-md12">
@@ -24,7 +24,7 @@ export default class BudgetOverview extends Component {
                         <div className="col-md-6">
                             <div>
                                 <p>Total Budget:</p>
-                                <p>Rs. {this.props.budgetStore}</p>
+                                <p>Rs. {this.props.budget}</p>
                             </div>
                             <div>
                                 <p>Total Expenses:</p>
