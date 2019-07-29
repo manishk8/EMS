@@ -10,24 +10,51 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
+            catValue: ''
         }
         this.totalExpense = 0;
         this.expenses = []
     }
 
     onChange = (e) => {
-        console.log("e.target.id", e.target.id, "e.target.value", e.target.value)
         this.setState({
             [e.target.id]: e.target.value
         })
     }
 
     expenseSave = () => {
+        this.expenses.push(this.state);
         this.props.dispatch(addExpense(
-            this.expenses.push(this.state)
+            this.expenses
+
         )
         )
-        this.setState({ category: [], name: '', price: '', date: '' })
+        this.setState({ category: '', name: '', price: '', date: '' })
+    }
+
+    selectCategory = (e) => {
+        this.setState({ catValue: e.target.value });
+    }
+
+    editExpensesClick = (data, i) => {
+        // console.log("iiiiiii", i)
+        console.log("data", data)
+        console.log("5iiiii", i)
+        console.log("this.expenses", this.expenses)
+        console.log("this.expenses.name", this.expenses[0].name)
+        console.log("data.name", data.name)
+        // console.log("this.props.expenses.name", this.data[0].name)
+
+        this.setState({
+            category: data.category,
+            name: data.name,
+            price: data.price,
+            date: data.date,
+        })
+    }
+
+    expenseUpdate = () => {
+        console.log("this.props.name", this.props.name)
     }
 
     render() {
@@ -51,11 +78,16 @@ class Home extends Component {
 
                     <AddExpense
                         category={this.props.category}
-                        name={this.props.name}
-                        price={this.props.price}
-                        date={this.props.date}
+                        name={this.state.name}
+                        price={this.state.price}
+                        date={this.state.date}
                         expenseSave={this.expenseSave}
                         onChange={this.onChange}
+                        handleCategory={this.handleCategory}
+                        value={this.state.catValue}
+                        selectCategory={this.selectCategory}
+                        expenses={this.expenses}
+                        expenseUpdate={this.expenseUpdate}
                     />
 
                     <ExpenseTable
@@ -64,6 +96,8 @@ class Home extends Component {
                         name={this.props.name}
                         price={this.props.price}
                         date={this.props.date}
+                        catValue={this.state.catValue}
+                        editExpensesClick={this.editExpensesClick}
                     />
 
                 </div>

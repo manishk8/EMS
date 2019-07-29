@@ -6,7 +6,7 @@ export default class BudgetOverview extends Component {
         this.spent = 0
     }
     render() {
-        this.spent = Number((this.props.totalExpense * 100) / this.props.budget);
+        this.spent = Number((this.props.totalExpense * 100) / this.props.budget).toFixed(2);
         return (
             <div className="row" style={{ border: "1px solid rgba(0,0,0,0.12)" }}>
                 <div className="col-md12">
@@ -18,7 +18,8 @@ export default class BudgetOverview extends Component {
                     <div className="row" style={{ padding: "16px 24px" }}>
                         <div className="col-md-6">
                             <div className="circle">
-                                <span>{this.spent}% Spent</span>
+                                <span>{this.spent}%</span>
+                                <span>{this.spent}Spent</span>
                             </div>
                         </div>
                         <div className="col-md-6">

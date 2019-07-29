@@ -31,18 +31,17 @@ class Setting extends Component {
     }
 
     updateCategory = () => {
-        console.log("this.state", this.state)
         this.categories.push(this.state.category)
         this.props.dispatch(addCategory(
             this.categories
         )
         )
-        console.log("this.categories", this.categories)
         this.setState({ category: "" })
     }
 
-    deleteCategory = () => {
-
+    deleteCategory = (index) => {
+        this.categories.splice(index, 1);
+        this.setState({ category: this.categories });
     }
 
     render() {
@@ -91,10 +90,10 @@ class Setting extends Component {
                                 </thead>
                                 <tbody>
                                     {
-                                        this.categories.map((data, id) =>
-                                            < tr key={id} >
+                                        this.props.category.length > 0 && this.props.category.map((data, i) =>
+                                            < tr key={i} id={i} >
                                                 <td>{data}</td>
-                                                <td><img src="/images/baseline_delete_outline_black_24dp.png" alt="icon" className="editIcon" onClick={this.deleteCategory} /></td>
+                                                <td><img src="/images/baseline_delete_outline_black_24dp.png" alt="icon" className="editIcon" onClick={() => this.deleteCategory(i)} /></td>
                                             </tr>
                                         )
                                     }

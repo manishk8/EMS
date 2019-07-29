@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class ExpenseTable extends Component {
     render() {
@@ -15,13 +15,13 @@ export default class ExpenseTable extends Component {
                 </thead>
                 <tbody>
                     {
-                        this.props.expenses.map((data, id) =>
-                            <tr key={id}>
-                                <td>{data.category}</td>
+                        this.props.expenses.map((data, i) =>
+                            <tr key={i}>
+                                <td>{data.catValue}</td>
                                 <td>{data.name}</td>
                                 <td>{data.price}</td>
                                 <td>{data.date}</td>
-                                <td><img src="/images/baseline_edit_black_24dp.png" alt="logo" className="editIcon" data-toggle="modal" data-target="#myModal" /></td>
+                                <td><img src="/images/baseline_edit_black_24dp.png" alt="logo" className="editIcon" data-toggle="modal" data-target="#myModal" onClick={() => this.props.editExpensesClick(data, i)} /></td>
                             </tr>
                         )
                     }

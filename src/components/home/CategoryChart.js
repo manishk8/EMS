@@ -1,5 +1,5 @@
 import React from 'react';
-import Chart from 'react-google-charts';
+// import Chart from 'react-google-charts';
 
 export default function CategoryChart() {
     return (

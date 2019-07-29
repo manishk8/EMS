@@ -1,9 +1,20 @@
 import React, { Component } from 'react'
 
 export default class AddExpense extends Component {
+    constructor() {
+        super();
+        this.state = {
+        }
+    }
+
     render() {
-        let categoryList = this.props.category;
-        console.log("this.props.name", this.props.name)
+        let categoryList = this.props.category.length > 0
+            && this.props.category.map((item, id) => {
+                return (
+                    <option key={id} value={item}>{item}</option>
+                )
+            }
+            )
         return (
             <div id="myModal" className="modal fade" role="dialog">
                 <div className="modal-dialog">
@@ -16,12 +27,8 @@ export default class AddExpense extends Component {
                             <form>
                                 <div className="form-group">
                                     <label htmlFor="category">Category:</label>
-                                    <select className="form-control" id="category">
-                                        {
-                                            categoryList.length > 0 && categoryList.map((data, id) =>
-                                                <option key={id}>{data}</option>
-                                            )
-                                        }
+                                    <select className="form-control" value={this.props.catValue} onChange={this.props.selectCategory}>
+                                        {categoryList}
                                     </select>
                                 </div>
                                 <div className="form-group">
@@ -41,6 +48,7 @@ export default class AddExpense extends Component {
                         <div className="modal-footer">
                             <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                             <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.props.expenseSave} >Save</button>
+                            <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.props.expenseUpdate} > Update</button>
                         </div>
                     </div>
                 </div>
