@@ -10,7 +10,9 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
-            catValue: ''
+            catValue: '',
+            open: false,
+            editData: null
         }
         this.totalExpense = 0;
         this.expenses = []
@@ -44,17 +46,40 @@ class Home extends Component {
         console.log("this.expenses.name", this.expenses[0].name)
         console.log("data.name", data.name)
         // console.log("this.props.expenses.name", this.data[0].name)
-
         this.setState({
-            category: data.category,
-            name: data.name,
-            price: data.price,
-            date: data.date,
+            open: true,
+            editData: data
         })
     }
 
-    expenseUpdate = () => {
-        console.log("this.props.name", this.props.name)
+    expenseUpdate = (data) => {
+        console.log("this.state", this.state)
+        this.setState({ category: '', name: '', price: '', date: '' })
+        this.expenses.push(this.state);
+        console.log("this.props.name", this.expenses)
+        this.props.dispatch(addExpense(
+            this.expenses
+
+        )
+        )
+
+
+    }
+
+    handleOpen = () => {
+        this.setState({ open: true });
+    }
+
+    handleClose = () => {
+        this.setState({ open: false, editData: null });
+    }
+
+    handleSave = (body, status) => {
+        if (status) {
+            // updating
+        } else {
+            // create new
+        }
     }
 
     render() {
@@ -74,21 +99,14 @@ class Home extends Component {
                         </div>
                     </div>
 
-                    <button type="button" className="btn btn-default addBtn" data-toggle="modal" data-target="#myModal">Add Expense</button>
+                    <button type="button" className="btn btn-default addBtn" data-toggle="modal" data-target="#myModal" onClick={this.handleOpen}>Add Expense</button>
 
-                    <AddExpense
-                        category={this.props.category}
-                        name={this.state.name}
-                        price={this.state.price}
-                        date={this.state.date}
-                        expenseSave={this.expenseSave}
-                        onChange={this.onChange}
-                        handleCategory={this.handleCategory}
-                        value={this.state.catValue}
-                        selectCategory={this.selectCategory}
-                        expenses={this.expenses}
-                        expenseUpdate={this.expenseUpdate}
-                    />
+                    {this.state.open &&
+                        <AddExpense
+                            data={this.state.editData}
+                            saveData={this.handleSave}
+                        />
+                    }
 
                     <ExpenseTable
                         expenses={this.expenses}
